@@ -83,7 +83,7 @@ nav-link.blade.php
 <a {{ $attributes }}>{{ $slot }}</a>
 ```
 
-## Passing Attributes to Components
+## Passing props to Components
 
 How to distinguish between props and attributes ?
 
@@ -111,3 +111,27 @@ How to use this component ?
 ```
 
 When you prefix a prop with :(colon), it means the value you are providing to this prop should be treated as an expression rather than as a string.
+
+## Passing data to view
+
+```
+Route::get('/', function () {
+    return view('home', [
+        'greeting' => 'laravel' //$greeting
+    ]);
+});
+```
+
+The second argument will be an array where each of the key will be extracted into variables once your view is loaded.
+Here in the view you will have access to $greeting variable.
+
+In the home view file
+
+```
+<x-layout>
+    <x-slot:heading>
+        Home
+    </x-slot:heading>
+    <h1>Hello from {{ $greeting }}</h1>
+</x-layout>
+```
