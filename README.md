@@ -135,3 +135,11 @@ In the home view file
     <h1>Hello from {{ $greeting }}</h1>
 </x-layout>
 ```
+
+## Route wildcards
+
+```
+Route::get('/jobs/{id}', function ($id) {
+    return view('contact');
+});
+```
