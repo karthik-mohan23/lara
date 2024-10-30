@@ -155,3 +155,30 @@ php artisan
 ```
 php artisan make:migration
 ```
+
+## Meet Eloquent
+
+When you create Job model laravel thinks that you have a table called 'jobs' and tries to reference it.
+
+To override this feature you can use
+
+```
+class Job extends Model
+{
+    //reference 'job_listings' table when using Job model to interact
+    protected $table = 'job_listings';
+}
+```
+
+| Model      | Table in DB  |
+| ---------- | ------------ |
+| Job        | jobs         |
+| JobListing | job_listings |
+
+## Artisan command to get help from a specific command
+
+eg:
+
+```
+php artisan help make:model
+```
