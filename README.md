@@ -143,3 +143,15 @@ Route::get('/jobs/{id}', function ($id) {
     return view('contact');
 });
 ```
+
+## To list all artisan commands
+
+```
+php artisan
+```
+
+## To create new table schema/migration file
+
+```
+php artisan make:migration
+```
