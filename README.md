@@ -182,3 +182,43 @@ eg:
 ```
 php artisan help make:model
 ```
+
+## Factories
+
+To add fake data
+
+Command to create new factory file
+
+```
+php artisan make:factory -m=<NameOfTheModel(User)> JobFactory(nameOfTheFile)
+```
+
+How to create fake data?
+
+```
+php artisan tinker
+```
+
+```
+App\Models\User::factory(10)->create();
+```
+
+How to create a particular state method ?
+why?
+To override the default values used to set the fake data
+
+```
+   public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'admin' => true,
+        ]);
+    }
+```
+
+How to run a particular state method ?
+
+```
+App\Models\User::factory()->admin()->create();
+<!-- App\Models\User::factory()->callTheStateMethod()->create(); -->
+```
