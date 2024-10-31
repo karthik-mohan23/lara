@@ -14,4 +14,8 @@ class Job extends Model
 
     // tell laravel that these fields can only be mass assigned
     protected $fillable = ['title', 'salary'];
+
+    public function employer () {
+        return $this->belongsTo(Employer::class);
+    }
 }

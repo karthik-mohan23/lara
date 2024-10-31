@@ -222,3 +222,35 @@ How to run a particular state method ?
 App\Models\User::factory()->admin()->create();
 <!-- App\Models\User::factory()->callTheStateMethod()->create(); -->
 ```
+
+## Relationships
+
+How to add foreign key in a migration file ?
+
+```
+$table->unsignedBigInteger('employer_id')
+<!-- $table->unsignedBigInteger('foreignTable_id') -->
+```
+
+or
+
+```
+$table->foreignIdFor(Employer::class)
+<!-- $table->foreignIdFor(ModelName::class) -->
+```
+
+How to create fake data if there is a foreign key ?
+
+```
+JobFactory
+ public function definition(): array
+    {
+        return [
+            'title' => fake()->jobTitle(),
+            'employer_id' => Employer::factory(),
+            'salary' => '$50,000 USD'
+        ];
+    }
+```
+
+So laravel knows okay I need to create a Employer factory and use its primary key here.
