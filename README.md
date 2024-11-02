@@ -254,3 +254,43 @@ JobFactory
 ```
 
 So laravel knows okay I need to create a Employer factory and use its primary key here.
+
+## Debugbar for Laravel
+
+Installation
+
+```
+composer require barryvdh/laravel-debugbar --dev
+```
+
+## N+1 problem
+
+It refers to database queries executed within a loop, rather than making a single query that loads all of the relevant data upfront.
+
+To fix this add eager loading(To minimize sql queries(2)).
+
+For eg:
+
+```
+$jobs = Job::with('employer)->get();
+```
+
+get all jobs with employer(relationship method) rather than
+
+```
+$jobs = Job::all();
+```
+
+Disable Lazy loading completely in your app.
+Now we will get an error in our application if we try lazy loading.
+
+navigate->app/Providers/AppServiceProvider
+
+```
+  public function boot(): void
+    {
+        Model::preventLazyLoading();
+    }
+```
+
+boot method -> triggered after all of the project dependencies have been fully loaded.
