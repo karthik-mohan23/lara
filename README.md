@@ -314,3 +314,62 @@ At Frontend
     {{ $jobs->links() }}
  </div>
 ```
+
+## Forms
+
+Accepting request
+
+```
+Route::post('/jobs', function () {
+    dd(request()->all());
+
+    dd(request('nameOfTheForm));
+});
+```
+
+```
+Route::post('/jobs', function () {
+    dd(request()->all());
+
+    dd(request('nameOfTheForm));
+});
+```
+
+## Create
+
+```
+Model::create([
+    'name1' => request('nameOfTheForm'),
+    'name2' => request('nameOfTheForm'),
+]);
+```
+
+## Redirect
+
+```
+return redirect('/jobs');
+```
+
+## Fillable($fillable)
+
+Fields that can be mass assigned
+
+```
+ protected $fillable = ['title', 'salary'];
+```
+
+## Guarded($guarded)
+
+Fields that should be guarded from being mass assigned
+
+```
+ protected $guarded = [];
+```
+
+[] -> you don't need to guard anything
+
+## Sort Descending(created_at)
+
+```
+Job::all()->latest();
+```
