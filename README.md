@@ -294,3 +294,23 @@ navigate->app/Providers/AppServiceProvider
 ```
 
 boot method -> triggered after all of the project dependencies have been fully loaded.
+
+## Pagination
+
+```
+  1) $jobs = Job::all()->paginate();
+  2) $jobs = Job::all()->simplePaginate();
+  3) $jobs = Job::all()->cursorPaginate(); //Performant one.
+
+    return view('jobs', [
+        'jobs' => $jobs
+    ]);
+```
+
+At Frontend
+
+```
+ <div>
+    {{ $jobs->links() }}
+ </div>
+```
