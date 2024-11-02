@@ -373,3 +373,36 @@ Fields that should be guarded from being mass assigned
 ```
 Job::all()->latest();
 ```
+
+## Validation
+
+In Laravel, you don't have to redirect user manually, instead Laravel will automatically redirect user to previous form(page just refreshes) with error message.
+
+```
+ request()->validate([
+    'title' => ['required','min:3'],
+    'salary' => ['required']
+]);
+```
+
+### Display validation errors
+
+```
+  @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                    <li class="text-red-500 text-sm">{{ $error }}</li>
+            @endforeach
+         </ul>
+  @endif
+```
+
+### Display validation error directly below a field
+
+```
+@error('nameOfTheField')
+    <p class="text-red-400 text-sm">
+        {{ $message }}
+    </p>
+@enderror
+```
