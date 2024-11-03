@@ -344,10 +344,47 @@ Model::create([
 ]);
 ```
 
+## Read
+
+```
+$data =  Model::all();
+```
+
+## Read one
+
+```
+$data =  Model::find($id);
+```
+
+## Update
+
+```
+$job = Job::find($id);
+$job = Job::findOrFail($id); //Better approach
+
+$job->title = request('title');
+$job->salary = request('salary');
+$job->save();
+
+  or
+
+Model::update([
+    'name1' => request('nameOfTheForm'),
+    'name2' => request('nameOfTheForm'),
+]);
+```
+
+## Delete
+
+```
+Job::findOrFail($id)->delete();
+```
+
 ## Redirect
 
 ```
 return redirect('/jobs');
+return redirect('/jobs' . $job->id);
 ```
 
 ## Fillable($fillable)
