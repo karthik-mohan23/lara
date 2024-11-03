@@ -1,78 +1,18 @@
 <?php
 
-use App\Models\Job;
+use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
-// index
-Route::get('/jobs', function () {
-    $jobs = Job::with('employer')->latest()->paginate();
+Route::view('/','home');
+Route::view('/contact','contact');
 
-    return view('jobs.index', [
-        'jobs' => $jobs
-    ]);
-});
-// create form
-Route::get('/jobs/create', function () {
-    return view('jobs.create');
-});
-// store 
-Route::post('/jobs', function () {
-// Validation
- request()->validate([
-    'title' => ['required','min:3'],
-    'salary' => ['required']
-]);
-
-// saving to database
-Job::create([
-    'title' => request('title'),
-    'salary' => request('salary'),
-    'employer_id' => 1,
-]);
-
-return redirect('/jobs');
-
-});
-// edit form
-Route::get('/jobs/{id}/edit', function ($id) {
-    return view('jobs.edit', [
-        'job' => Job::find($id)
-    ]);
-});
-// show
-Route::get('/jobs/{id}', function ($id) {
-    return view('jobs.show', [
-        'job' => Job::find($id)
-    ]);
-});
-// update
-Route::patch('/jobs/{id}', function ($id) {
-    // Validation
- request()->validate([
-    'title' => ['required','min:3'],
-    'salary' => ['required']
-]);
-// find item
-$job = Job::findOrFail($id);
-$job->title = request('title');
-$job->salary = request('salary');
-
-// save
-$job->save();
-// redirect
-return redirect('/jobs');
-
-});
-// destroy
-Route::delete('/jobs/{id}', function ($id) {
-  Job::findOrFail($id)->delete();
-  return redirect('/jobs');
-});
+Route::get('/jobs', [JobController::class, 'index']);
+Route::get('/jobs/create', [JobController::class, 'create']);
+Route::post('/jobs', [JobController::class, 'store']);
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit']);
+Route::get('/jobs/{job}', [JobController::class, 'show']);
+Route::patch('/jobs/{job}', [JobController::class, 'update']);
+Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
 
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+

@@ -443,3 +443,15 @@ In Laravel, you don't have to redirect user manually, instead Laravel will autom
     </p>
 @enderror
 ```
+
+## Render just views
+
+```
+Route::view('/contact',contact(blade file name))
+```
+
+## Route list
+
+```
+php artisan route:list --except-vendor
+```
