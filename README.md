@@ -455,3 +455,19 @@ Route::view('/contact',contact(blade file name))
 ```
 php artisan route:list --except-vendor
 ```
+
+### Route list
+
+```
+'password' => ['required', 'confirmed']
+```
+
+Laravel will automatically check if password and password_confirmation fields have the same value.
+
+### Session Hijacking
+
+The exploitation of a valid session token to gain access to a web server.
+
+```
+request()->session()->regenerate();
+```
