@@ -471,3 +471,9 @@ The exploitation of a valid session token to gain access to a web server.
 ```
 request()->session()->regenerate();
 ```
+
+## To get currently logged in user
+
+```
+Auth::user()
+```
